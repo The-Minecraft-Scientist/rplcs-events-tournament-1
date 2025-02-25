@@ -148,7 +148,7 @@ impl ContainerHandle {
 
     pub async fn health_check(&self) -> Result<()> {
         self.http_client
-            .get(&format!("{}/health", self.get_url()))
+            .get(format!("{}/health", self.get_url()))
             .send()
             .await
             .context("Failed to send health check request")?
@@ -168,7 +168,7 @@ impl ContainerHandle {
             endpoint, self.port, game_id
         );
         self.http_client
-            .post(&format!("{}/{}", self.get_url(), endpoint))
+            .post(format!("{}/{}", self.get_url(), endpoint))
             .query(&[("game_id", game_id.to_string())])
             .json(payload)
             .send()

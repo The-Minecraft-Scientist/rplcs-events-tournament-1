@@ -86,10 +86,9 @@ impl GameMap {
                     bail!("Failed to find valid targets for node {:?}", node);
                 }
 
-                available_targets
+                *available_targets
                     .choose(rng)
                     .ok_or(anyhow!("Failed to choose target for node {:?}", node))?
-                    .clone()
             };
 
             // Try to make room if target is at max degree
@@ -348,9 +347,10 @@ impl GameMap {
             };
 
             let arrow = if is_there_bidirectional_edge || has_bidirectional_loop {
-                let mut arrow = Arrow::default();
-                arrow.end = LineEndKind::None;
-                arrow
+                Arrow {
+                    end: LineEndKind::None,
+                    ..Default::default()
+                }
             } else {
                 Arrow::default()
             };

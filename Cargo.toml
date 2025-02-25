@@ -1,3 +1,6 @@
 [workspace]
 resolver = "2"
 members = ["server", "game"]
+
+[workspace.dependencies]
+rplcs_events = "1.0"

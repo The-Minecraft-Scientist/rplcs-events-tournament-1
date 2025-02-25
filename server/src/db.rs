@@ -12,6 +12,7 @@ use tokio::time::sleep;
 use crate::game::GameResult;
 
 #[derive(Clone)]
+#[expect(clippy::type_complexity)]
 pub struct Database {
     pool: Pool<SqliteConnectionManager>,
     matchup_cache: Arc<Mutex<HashMap<(String, String), (String, String)>>>,

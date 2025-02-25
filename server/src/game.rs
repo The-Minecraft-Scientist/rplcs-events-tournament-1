@@ -112,8 +112,8 @@ impl Game {
                 self.player_positions,
                 self.enemy_positions,
                 &[
-                    self.players[0].player_state().clone(),
-                    self.players[1].player_state().clone(),
+                    *self.players[0].player_state(),
+                    *self.players[1].player_state(),
                 ],
                 &self.enemies,
                 &svg_path,
@@ -188,10 +188,10 @@ impl Game {
     }
 
     fn check_game_over(&self) -> Option<GameResult> {
-        if self.players.iter().any(|p| p.player_state().health <= 0) {
-            if self.players[0].player_state().health <= 0 {
+        if self.players.iter().any(|p| p.player_state().health == 0) {
+            if self.players[0].player_state().health == 0 {
                 Some(GameResult::Player2Win)
-            } else if self.players[1].player_state().health <= 0 {
+            } else if self.players[1].player_state().health == 0 {
                 Some(GameResult::Player1Win)
             } else {
                 None
@@ -357,7 +357,7 @@ impl Game {
                 self.enemy_positions[i] = *new_pos;
 
                 // Check if landed on player
-                let player_positions = self.player_positions.clone();
+                let player_positions = self.player_positions;
                 for (player_idx, &player_pos) in player_positions.iter().enumerate() {
                     if player_pos == *new_pos {
                         self.handle_fight(player_idx, FightTarget::Enemy(i))

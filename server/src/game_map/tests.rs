@@ -68,7 +68,7 @@ fn validate_map(map: &GameMap, seed: i64) -> TestResult {
         }
 
         let node_degree = map.get_node_degree(node);
-        if node_degree < MIN_DEGREE || node_degree > MAX_DEGREE {
+        if !(MIN_DEGREE..=MAX_DEGREE).contains(&node_degree) {
             return TestResult::error(format!(
                 "Node {:?} has invalid degree: {} [seed: {}]",
                 node, node_degree, seed

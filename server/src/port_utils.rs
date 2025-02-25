@@ -15,7 +15,7 @@ pub async fn get_next_port() -> Result<u16> {
     let mut port = get_port_allocator().lock().await;
 
     let current = *port;
-    if current >= MAX_PORT {
+    if current == MAX_PORT {
         *port = MIN_PORT;
     } else {
         *port += 1;
