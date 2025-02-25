@@ -5,18 +5,19 @@ edition = "2024"
 license = "AGPL-3.0"
 
 [dependencies]
-round_robin = "1.0"
-anyhow = "1.0"
 rplcs_events = { workspace = true }
+petgraph = { workspace = true }
+rand = { workspace = true }
+log = { workspace = true }
+anyhow = { workspace = true }
+layout-rs = { workspace = true }
+round_robin = "1.0"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-petgraph = "0.7"
-rand = "0.9"
 tokio = { version = "1.0", features = ["full"] }
 reqwest = { version = "0.12", features = ["json"] }
-log = "0.4"
 env_logger = "0.11"
-layout-rs = "0.1"
+
 r2d2_sqlite = "0.26"
 r2d2 = "0.8"
 rusqlite = { version = "0.33", features = ["bundled"] }

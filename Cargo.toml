@@ -4,3 +4,8 @@ members = ["server", "game"]
 
 [workspace.dependencies]
 rplcs_events = "1.0"
+petgraph = "0.7"
+rand = "0.9"
+log = "0.4"
+anyhow = "1.0"
+layout-rs = "0.1"
